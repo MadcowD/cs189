@@ -1,0 +1,182 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                      Homework 1                            %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[letter]{article}
+
+\usepackage{lipsum}
+\usepackage[pdftex]{graphicx}
+\usepackage[margin=1.5in]{geometry}
+\usepackage[english]{babel}
+\usepackage{listings}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{framed} 
+\usepackage{amsmath}
+\usepackage{titling}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+
+%%%%%%%%%%%%%%%
+%% DOC INFO %%%
+%%%%%%%%%%%%%%%
+\newcommand{\bHWN}{2}
+\newcommand{\bCLASS}{CS 189}
+
+\title{\bCLASS: Homework \bHWN}
+\author{William Guss\\26793499\\wguss@berkeley.edu}
+
+\fancyhead[L]{\bCLASS}
+\fancyhead[CO]{Homework \bHWN}
+\fancyhead[CE]{GUSS}
+\fancyhead[R]{\thepage}
+\fancyfoot[LR]{}
+\fancyfoot[C]{}
+\usepackage{csquotes}
+
+
+
+
+\pagestyle{fancy}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+
+\newenvironment{menumerate}{%
+  \edef\backupindent{\the\parindent}%
+  \enumerate%
+  \setlength{\parindent}{\backupindent}%
+}{\endenumerate}
+
+%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{menumerate}
+\item 
+\item
+\item Let $A$ be a positive definite matrix in $\mathbb{R}^{n\times n}.$
+  \begin{menumerate}
+    \item Cionsider the following derrivation:
+    \begin{equation}
+      \begin{aligned}
+          x^TAx = x^T \begin{bmatrix}
+            \sum_j^n  a_{1j}x_j \\
+            \vdots\\
+            \sum_j^n a_{nj}x_j
+          \end{bmatrix}  = \sum_i^n \sum_j^n a_{ij}x_ix_j.
+       \end{aligned}   
+    \end{equation}
+    \item 
+    \begin{theorem}
+      If $A$ is positive definite, then the diagonals of $A$ are positive.
+    \end{theorem}
+    \begin{proof}
+      Suppose that there is negative value on the diagonal, say $a_{qq}.$
+      Then let $x = e_{q}.$ If we apply the quadratic form we get $e_qA^Te_q = a_qq < 0.$ 
+      This contradicts the positive semidefiniteness of $A.$
+    \end{proof}
+  \end{menumerate}
+  \item Short Proofs. 
+  \begin{menumerate}
+    \item Assume problem (b).
+    \begin{lemma}
+      If $A$ is a matrix with eigen values $\lambda_n$  $A + \gamma I$ has eigenvalues $\gamma + \lambda_n$   
+    \end{lemma}
+    \begin{proof}
+      If $\lambda_n$ is an eigenvalue, then $Av_n = \lambda_n v_n$  for a corresponding eigenvector $v.$
+      Furthermore 
+      \begin{equation}
+       (A + \gamma I)v = Av + \gamma I v = \lambda_n v + \gamma v = (\lambda_n + \gamma)
+       \end{equation} 
+       which implies that $\lambda_n + \gamma$ is an eigen value of $A + \gamma I.$ This completes the proof.  
+    \end{proof}
+    \begin{theorem}
+      If $A$ is positive semidefinite and $\gamma > 0,$ then $A + \gamma I$ is positive definite.
+    \end{theorem}
+    \begin{proof}
+      If $A$ is positive definite then by the logic of the proof of (b), 
+      \begin{equation}
+          \begin{aligned}
+            x^T A x = \sum_i \lambda_i (x_i^T e_i)^2 \geq 0.         
+          \end{aligned}
+         \end{equation}   
+      It follows that some $\lambda \geq 0$ since $x \neq 0.$ Therefore by the previous lemma adding 
+      $\gamma$ to the diagonal adds $\gamma$ to every eigenvalue implying that all eigen values are positive.
+      By (b), $A + I\gamma$ is positive definiute therefore.
+      \end{proof}
+    \item Lolololol!
+    \begin{theorem}
+      $A$ is positive definite if and only if all of its eigen values are more than 0.
+    \end{theorem}
+    \begin{proof}
+      Iff $A$ is positive semidefinite then it is symmetric. Using spectral theorem we have that 
+      \begin{equation}
+        \begin{aligned}
+          x^TAx = \sum_i (x^Te_i)e_i^TAx &= \sum_i = x^Te_ie_i^T\lambda e_i^Tx \\
+              &= \sum_i \lambda_i (x^Te_i)^2 > 0
+         \end{aligned}   
+      \end{equation}   
+      which is true if and only if all $\lambda_i$ are more than 0.
+    \end{proof}
+    \item 
+    \begin{theorem}
+      If $A$ is positive definite then it is invertible.   
+    \end{theorem}
+    \begin{proof}
+      The invertible matrix theorem statesa that a matrix is invertible if and only if all of its eigen values
+      are more than $0$. By the previous theorem if $A$ is positive definite then all of its eigen values
+       are positive and so it is invertible.   
+    \end{proof}
+    \item
+    \begin{theorem}
+      If $A$ is positive definite then there exist $n$ linearly independent vectors so that 
+      $A_{ij} = x^T_ix_j.$   
+    \end{theorem}
+    \begin{proof}
+      The statement of the theorem is true if and only if $A = B^TB$ where $B$ is invertible. 
+      By spectral theorem we have that $A = U\Lambda U^T$ where $\Lambda = diag(\lambda_1, \dots, \lambda_n).$
+      Furthermore $U^{-1} = U^T$. Let $\Omega = diag(\sqrt \lambda_1, \dots, \sqrt \lambda_n).$ Then, 
+      $\Omega^2 = \Lambda.$ Let $W^T = U\Omega$ and $W = \Omega U^T.$ So we have that $W$ is still an orthonormal matrix
+      and so $A = W^TW.$ This completes the proof.
+    \end{proof}
+  \end{menumerate}
+  \item DERIVATIONS :( Assuming theorems from Math 105
+  \begin{menumerate}
+      \item Consider the followiong derivation
+      \begin{equation}
+        \begin{aligned}
+          \frac{\partial(x^Ta)}{\partial x} = \frac{\partial (x)}{\partial x}^T a + \left(\frac{\partial (a)}{\partial x}\right)^T x
+          &= a.
+        \end{aligned}
+       \end{equation}
+       \item Consider the following derivation
+       \begin{equation}
+          \begin{aligned}
+              \frac{\partial(x^TAx)}{\partial x} = \frac{\partial(x^T)}{\partial x} Ax + \frac{\partial(Ax)}{\partial x}^TX = Ax + Ax^T
+          \end{aligned}
+       \end{equation}
+       \item Consider the following derivation
+       \item
+       \begin{theorem}
+          If $x \in \mathbb{R}^n$ 
+          \begin{equation}
+            \|x\|_2 \leq \|x\|_1 \leq \sqrt{n}\|x\|_2 = \sqrt{\sum_{i=1}^n x_i^2}.
+          \end{equation}
+       \end{theorem}
+       \begin{proof}
+            
+       \end{proof}
+  \end{menumerate}
+\end{menumerate}
+
+\end{document}
+
+
+
+
+
