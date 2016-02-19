@@ -169,7 +169,15 @@
           \end{equation}
        \end{theorem}
        \begin{proof}
-            
+            Squaring the first two terms of the inequality shows that
+            $\|x\|_2^2$ has fewer terms than $\|x\|_1.$ 
+
+            Now define the following vector, $e$, so that $e_i = 1$ if
+            $x_i$ is positive and $e_i = -1$ if $x$ is negative.
+            Then $\langle x, e \rangle = \sum_i |x_i| = \|x\|_1.$
+
+            Cauchy schwartz says that $\langle x, e \rangle \leq \|x\|\|e\| = \|x\|_2\sqrt{n}.$
+            This completes the proof.
        \end{proof}
   \end{menumerate}
 \end{menumerate}
