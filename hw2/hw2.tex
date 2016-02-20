@@ -57,11 +57,43 @@
 \thispagestyle{empty}
 
 \begin{menumerate}
-\item 
-\item
+\item Let $a = 1/\sqrt{3}, b = 1, c = \sqrt{3}.$ Then recall that 
+\begin{equation}
+  E[G] = 4\int_0^a f(x) dx + 3 \int_a^b f(x) dx + 2\int_b^c f(x) dx.
+\end{equation}
+Using babies first calculus class, we get that 
+\begin{equation}
+\int f(x) dx = \frac{\arctan(x)}{\pi},
+\end{equation}
+giving us  
+\begin{equation}
+E[G] = \frac{4}{3} + \frac{1}{3} + \frac{1}{3} = 2.
+\end{equation}
+\newpage
+\item Maximum Likelihood Estimation?
+Recall from wikipedia, that since $f(x;\theta)$ for each is generated independently
+and identically distributed, we have
+\begin{equation}
+f(x_1,x_2\dots;\theta) = \prod_i^n \theta e^{-\theta x_n}.
+\end{equation}
+We want to find a value $\theta$ which maximizes the average log-likihood, given by
+\begin{equation}
+  \ell = \frac{1}{n} \sum \ln (\theta e^{-\theta x_i}) = \sum \ln (\theta) -\theta x_i.
+\end{equation}
+Using calculus, we look for $\theta$ satisfying
+\begin{equation}
+  \begin{aligned}
+    \ell' = \sum \frac{1}{\theta} - x_i &= 0 \\
+    \frac{n}{\theta}  &= \sum x_i\\
+    \theta &= \frac{n}{\sum x_i}.
+  \end{aligned}
+\end{equation}
+Applying the values we get $\sum x_i = 5.9$, $n = 5$, and $\theta = 0.847457627.$
+
+\newpage
 \item Let $A$ be a positive definite matrix in $\mathbb{R}^{n\times n}.$
   \begin{menumerate}
-    \item Cionsider the following derrivation:
+    \item Consider the following derrivation:
     \begin{equation}
       \begin{aligned}
           x^TAx = x^T \begin{bmatrix}
@@ -81,6 +113,9 @@
       This contradicts the positive semidefiniteness of $A.$
     \end{proof}
   \end{menumerate}
+
+\newpage
+
   \item Short Proofs. 
   \begin{menumerate}
     \item Assume problem (b).
@@ -145,6 +180,9 @@
       and so $A = W^TW.$ This completes the proof.
     \end{proof}
   \end{menumerate}
+
+
+  \newpage
   \item DERIVATIONS :( Assuming theorems from Math 105
   \begin{menumerate}
       \item Consider the followiong derivation
@@ -179,6 +217,90 @@
             Cauchy schwartz says that $\langle x, e \rangle \leq \|x\|\|e\| = \|x\|_2\sqrt{n}.$
             This completes the proof.
        \end{proof}
+  \end{menumerate}
+  \newpage
+  \item Weighted Linear Lolzs.
+  \begin{menumerate}
+    \item Consider the following.
+    \begin{equation}
+        \begin{aligned}
+          R[w] = \sum_i \lambda_i (w^T x_i - y_i)^2 &=\sum_i (w^T x_i - y_i) \lambda_i (w^T x_i - y_i)  \\
+          &=\sum_i v^T \Lambda v. 
+        \end{aligned}
+    \end{equation}
+    Observe that $v = (w^Tx_i - y_i, \dots)^T = (w^Tx_i,dots) - Y = Xw - Y.$ Therefore 
+    \begin{equation}
+      R[w] = (Xw - Y)^T\Lambda (Xw - Y).
+    \end{equation}
+    \item We can use the linearity of matrix multiplication to derive the following expression:
+    \begin{equation}
+      \begin{aligned}
+        \frac{\partial R}{\partial w} &= \frac{\partial}{\partial w} (Xw)^T\Lambda (Xw - Y) - Y^T\Lambda (Xw - Y) \\
+         &= \frac{\partial}{\partial w} (Xw)^T\Lambda Xw - (Xw)^T\Lambda Y - Y^T\Lambda (Xw) + Y^T \Lambda Y \\
+         &= \frac{\partial}{\partial w} (Xw)^T\Lambda Xw - (Xw)^T\Lambda Y- \frac{\partial}{\partial w}  Y^T\Lambda Xw \\
+         &= \frac{\partial}{\partial w} (Xw)^T\Lambda Xw - (Xw)^T\Lambda Y - (Y^T\Lambda X) \\
+         &= X^T \Lambda Xw + (\Lambda X)^T Xw - X^T \Lambda Y  - Y^T\Lambda X = 0. \\
+      \end{aligned}
+    \end{equation}
+    And so we can manipulate the expression so that
+    \begin{equation}
+      \begin{aligned}
+          &(X^T \Lambda X + (\Lambda X)^T X)w  =  X^T \Lambda Y  + Y^T\Lambda X \\
+          w  &=  ((X^T \Lambda X + (\Lambda X)^T X)^{-1}(X^T \Lambda Y  + Y^T\Lambda X) \\
+          &=  X^{-1}(X^T \Lambda  + X^T\Lambda^T )^{-1}(X^T \Lambda Y  + Y^T\Lambda X) \\
+          &=  2X^{-1}(X^T\Lambda)^{-1}(X^T \Lambda Y  + Y^T\Lambda X) \\
+          &=  2(X^T\Lambda X)^{-1}(X^T \Lambda Y  + Y^T\Lambda X) \\
+      \end{aligned}
+    \end{equation}
+    \item Adding $L_2$ regularization! Gives us
+    \begin{equation}
+      R[w] = (Xw - Y)^T\Lambda (Xw - Y) +  w^T\gamma I w.
+    \end{equation}
+    Taking dthe derivative we get
+    \begin{equation}
+      \begin{aligned}
+        \frac{\partial R}{\partial w} &= \frac{\partial}{\partial w} (Xw)^T\Lambda (Xw - Y) - Y^T\Lambda (Xw - Y) +   \frac{\partial }{\partial w}w^T\gamma I w\\
+         &= \frac{\partial}{\partial w} (Xw)^T\Lambda Xw - (Xw)^T\Lambda Y - Y^T\Lambda (Xw) + Y^T \Lambda Y  + \frac{\partial }{\partial w}w^T\gamma I w \\
+         &= \frac{\partial}{\partial w} (Xw)^T\Lambda Xw - (Xw)^T\Lambda Y- \frac{\partial}{\partial w}  Y^T\Lambda Xw  +\frac{\partial }{\partial w}w^T\gamma I w\\
+         &= \frac{\partial}{\partial w} (Xw)^T\Lambda Xw - (Xw)^T\Lambda Y - (Y^T\Lambda X)  + \frac{\partial }{\partial w}w^T\gamma I w\\
+         &= X^T \Lambda Xw + (\Lambda X)^T Xw + 2\gamma I w - X^T \Lambda Y  - Y^T\Lambda X = 0. \\
+      \end{aligned}
+    \end{equation}
+    And so we can manipulate the expression so that
+    
+    \begin{equation}
+      \begin{aligned}
+          &(X^T \Lambda X + (\Lambda X)^T X + 2I\gamma)w  =  X^T \Lambda Y  + Y^T\Lambda X \\
+          w  &=  ((X^T \Lambda X + (\Lambda X)^T X + 2I\gamma)^{-1}(X^T \Lambda Y  + Y^T\Lambda X) \\
+          &=  \frac12(X^T\Lambda X + I\gamma)^{-1}(X^T \Lambda Y  + Y^T\Lambda X) .\\
+      \end{aligned}
+    \end{equation}
+    Essentially we add to the least squares pseudo inverse $\gamma I,$ thereby increasing its eigen values.
+    This may allow us to find a solution when $X^T\Lambda X$ is non-singular. ie. $L_2$ regulartization penalizes
+    movement in any (infinite) direction too far away from a small solution, it also forces a solution with $\gamma$ large enough.
+  \end{menumerate}
+  \newpage
+  \item Doubt Classes!
+  \begin{menumerate}
+    \item We wish to minimize risk with respect to $i$. So, 
+    observe the logic of the policy. If the probability that $\omega_j$ is the output
+    given $x$ is less than that with respect to $i$ then we wish to eliminate this large contribution to the some.
+    It must furthermore be that such a probability be at least less than the loss incurred
+    by the doubt. That is consider the expected value $l(...) = \lambda_s$ in the case that we don't 
+    choose the doubt. So then $\lambda_s(1-\lambda_r/\lambda_s) = \lambda_s - \lambda_r$ if
+    and only if the doubt in this situation has less 'weight' than making the prediction. 
+    Therefore this policy makes sense.
+    \item In the case that there is no loss incurred by doubting,
+    it follows that using the minimum risk strategy immediately implies
+    that fior every training example we choose to doubt unless
+    $P(\omega_i|x) = 1$, in which case we are $100\%$ certain
+    that our classification estimate is correct. This agrees with my intuition.
+
+    In the case thgat $\lambda_r > \lambda_s$, the intuition is that choosing to
+    doubt our predicition is more "negativeley" impactful then to choose our prediction
+    itsself; that is, more loss is incurred if we tend towards a doubt class.
+    Therefore by our "minimum" risk procedure, we should choose to accept the prediction
+    instead of the doubt every single time. ( $P(\omega_i|x) \geq 0 > 1 - m $ where $m > 1$.)
   \end{menumerate}
 \end{menumerate}
 

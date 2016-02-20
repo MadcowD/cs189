@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1455849439 "hw2.tex" "/home/william/workspace/eecs/cs189/hw2/hw2.pdf" "hw2" 1455849439
+["pdflatex"] 1455949591 "hw2.tex" "/home/william/workspace/eecs/cs189/hw2/hw2.pdf" "hw2" 1455949691
   "/etc/texmf/web2c/texmf.cnf" 1448662993 1464 a4af512f3aaf20a97ae1601d19d817c4 ""
-  "/home/william/workspace/eecs/cs189/hw2/hw2.aux" 1455849439 166 db7e845c9605d9d9013124913d023cfd ""
+  "/home/william/workspace/eecs/cs189/hw2/hw2.aux" 1455949591 166 db7e845c9605d9d9013124913d023cfd ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -27,6 +27,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1248133631 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1248133631 30251 6afa5cb1d0204815a708a080681d4674 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb" 1248133631 37912 77d683123f92148345f3fc36a38d9ab1 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1248133631 36281 c355509802a035cadc5f15869451dcee ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
@@ -89,11 +90,11 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1435377840 31349 7675f8adfbe12aae865d340d35423a49 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1448663144 1779312 b2f993ff39f888114b7dddf8751f0ae0 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1448663191 3845598 cc73e2a4d15b195f19946d9d36385c3c ""
-  "hw2.aux" 1455849439 166 db7e845c9605d9d9013124913d023cfd ""
-  "hw2.tex" 1455849438 6509 b3f91bc31a38e1b02201783d52e07309 ""
+  "hw2.aux" 1455949591 166 db7e845c9605d9d9013124913d023cfd ""
+  "hw2.tex" 1455949589 12735 7ce7be9c276bb51e1dd75e21a5ac2f7c ""
   (generated)
+  "/home/william/workspace/eecs/cs189/hw2/hw2.log"
   "hw2.aux"
-  "/home/william/workspace/eecs/cs189/hw2/hw2.pdf"
   "hw2.log"
   "hw2.pdf"
-  "/home/william/workspace/eecs/cs189/hw2/hw2.log"
+  "/home/william/workspace/eecs/cs189/hw2/hw2.pdf"
