@@ -1,0 +1,9 @@
+William Guss
+26793499
+
+To run my code, mess up your bashrc by adding anaconda to the path (for numpy and skilearn. The run the python file and
+uncomment the experiment with numbers corresponding to the question.
+For example use
+"Experiment 12" for questions 1 and 2.
+
+Thanks!
