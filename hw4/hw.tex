@@ -1,0 +1,179 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                      Homework _                            %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[letter]{article}
+
+\usepackage{lipsum}
+\usepackage[pdftex]{graphicx}
+\usepackage[margin=1.5in]{geometry}
+\usepackage[english]{babel}
+\usepackage{listings}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{framed} 
+\usepackage{amsmath}
+\usepackage{titling}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+
+\newenvironment{menumerate}{%
+  \edef\backupindent{\the\parindent}%
+  \enumerate%
+  \setlength{\parindent}{\backupindent}%
+}{\endenumerate}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%
+%% DOC INFO %%%
+%%%%%%%%%%%%%%%
+\newcommand{\bHWN}{4}
+\newcommand{\bCLASS}{CS 189}
+
+\title{\bCLASS: Homework \bHWN}
+\author{William Guss\\26793499\\wguss@berkeley.edu}
+
+\fancyhead[L]{\bCLASS}
+\fancyhead[CO]{Homework \bHWN}
+\fancyhead[CE]{GUSS}
+\fancyhead[R]{\thepage}
+\fancyfoot[LR]{}
+\fancyfoot[C]{}
+\usepackage{csquotes}
+
+%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{menumerate}
+  \item \textbf{Ridge Regression}
+  \begin{menumerate}
+    \item Let $J(w, \alpha)$ be a loss function so that
+    \begin{equation}
+      J(w, \alpha) = (Xw + \alpha1 - y)^T(Xw + \alpha1 - y) + \lambda w^T w.     
+     \end{equation}
+     The maximizing $w, \alpha$ are derived as follows. The gradient with respect to $w$ is calculated; assuming that $J$ is convex in $w,$  this will give a maximum. A proof is given at the end ofthe assignment.
+     \begin{equation*}
+      \begin{aligned}
+        \nabla_w J &= \nabla_w (Xw + \alpha1 - y)^T(Xw + \alpha1 - y) + \nabla_w \lambda w^T w \\
+        &=  2 \lambda w  +2(\nabla_w (Xw + \alpha1 - y))^T(Xw + \alpha1 - y) \\
+        &= 2 \lambda w +2X^T(Xw + \alpha1 - y)
+      \end{aligned}    
+     \end{equation*}
+     Letting this quantity be $0$ by the convexity of $J$ we get
+     \begin{equation}
+        \begin{aligned}
+          0 &=2 \lambda w +2X^T(Xw + \alpha1 - y) \\
+          0 &= 2\lambda w + 2X^TXw + 2\alpha X^T 1 - 2X^Ty \\
+          0 &= ( \lambda I + X^TX)w + \alpha X^T 1 - X^T y \\
+          X^Ty - \alpha \bar x &= ( \lambda I + X^TX) \\
+          w &= ( \lambda I + X^TX)^{-1}  X^Ty
+        \end{aligned}
+     \end{equation}
+     \item See attached iPython notebook!
+  \end{menumerate}
+
+  \item \textbf{Logistic Regression}
+  \begin{menumerate}
+    \item  In this case
+    \begin{equation}
+      R(w) = 1.9883724141284103.
+     \end{equation} 
+     \item Nah
+     \item  $w(1) = array([-3. , 5.05089812, 0.68363271])$
+     \item $R(w(1)) = 0.066133848540594925$ 
+     \item Nah
+     \item $w(2) =  array([-4. , 9.10179623, 1.36726541])$ 
+     \item $R(w(2)) =  0.0015778803918752944$
+  \end{menumerate}
+  \item
+  \item \textbf{Revisiting Logistic Regression}
+  \begin{menumerate}
+  	\item Show the following theorem:
+  	\begin{theorem}
+ 		If we define $g(z) = \frac{\tanh z + 1}{2}$ then
+ 		\begin{equation}
+ 			g(z) = \frac{e^z - e^{-z}}{2(e^z + e^{-z})} + \frac{1}{2}.
+ 		\end{equation}
+  	\end{theorem} 	
+ 		\begin{proof}
+ 			Consider the following algebraic manipulation of $g(z)$ for any $z \in \mathbb{R}.$
+ 			\begin{equation*}
+ 				\begin{aligned}
+ 					g(z) = \frac{\tanh z + 1}{2} &= \frac{(2s(2z) - 1) + 1}{2} \\
+ 					&= \frac{2s(2z) - 1}{2} + \frac{1}{2}.
+ 				\end{aligned}
+ 			\end{equation*}
+ 			Therefore we must only show that 
+ 			\begin{equation}
+ 				\frac{e^z -e^{-z}}{2(e^z+e^{-z})} = \frac{2\frac{1}{1+e^{-2z}}-1}{2}.
+ 			\end{equation}
+ 			Observe that since $e^z \neq 0$,
+ 			\begin{equation*}
+ 				\begin{aligned}
+ 					\frac{2s(2z)-1}{2} &= \frac{1 - e^{-2z}}{2(1+e^{-2z})} \\
+ 					&= \frac{e^z - e^{-z}}{2(e^z + e^{-z})}
+ 				\end{aligned}
+ 			\end{equation*}
+ 			and so we know that, 
+ 			 		\begin{equation}
+ 			g(z) = \frac{e^z - e^{-z}}{2(e^z + e^{-z})} + \frac{1}{2}.
+ 		\end{equation} 	
+ 		\end{proof}
+	\item We calculate $g'(z)$ as follows,
+	\begin{equation*}
+		g'(z) = \frac{1}{2}\tanh' z = \frac{1}{2}\left(1 - \tanh^2 z\right)  
+	\end{equation*}
+	by the definition of $s'(z).$
+	\item Let $J(w) = \sum_{i=1}^n y_i \ln(g(X_i \cdot w)) + (1- y_i)\ln(1 - g(X_i \cdot w))$.  We derive the batch gradient descent learning rule as follows.
+
+  \begin{equation*}
+    \begin{aligned}
+      \nabla J(w) &= \sum_{i=1}^n y_i \nabla \ln(g(X_i \cdot w)) + \nabla (1 - y_i) \ln (1 - g(X_i \cdot w)) \\
+      &=   \sum_{i=1}^n \frac{y_i}{g(X_i \cdot w)} \nabla g(X_i \cdot w) - \frac{1-y_i}{1 - g(X_i \cdot w)} \nabla g(X_i \cdot w) \\
+      &= \sum_{i=1}^n \frac{y_i}{g(X_i \cdot w)} g(X_i \cdot w)(1- g(X_i \cdot w))\nabla X_i \cdot w - \\& \;\;\;\;\;\;\;\;\;\;\;\;\;\frac{1-y_i}{1 - g(X_i \cdot w)} g(X_i \cdot w) (1 - g(X_i \cdot w))\nabla X_i \cdot w \\
+      &= \sum_{i=1}^n  \left(\frac{y_i}{g(X_i \cdot w)} - \frac{1-y_i}{1 - g(X_i \cdot w)}\right) g(X_i \cdot w) (1 - g(X_i \cdot w))\nabla X_i \cdot w \\
+      &=  \sum_{i=1}^n  \left(\frac{y_i}{g(X_i \cdot w)} - \frac{1-y_i}{1 - g(X_i \cdot w)}\right) g(X_i \cdot w) (1 - g(X_i \cdot w))X_i \\
+      &= \sum_{i=1}^n  \left(\frac{y_i(1 - g(X_i \cdot w))  - (1-y_i)g(X_i \cdot w)}{g(X_i \cdot w)(1 - g(X_i \cdot w))} \right) g(X_i \cdot w) (1 - g(X_i \cdot w))X_i \\
+      &= \sum_{i=1}^n  \left(y_i(1 - g(X_i \cdot w))  - (1-y_i)g(X_i \cdot w)\right)X_i \\
+      &= \sum_{i=1}^n  \left(y_i - y_ig(X_i \cdot w)  - g(X_i \cdot w) + y_ig(X_i \cdot w)\right)X_i \\
+      &= \sum_{i=1}^n  \left(y_i  - g(X_i \cdot w)\right)X_i \\
+    \end{aligned}
+  \end{equation*}
+
+  Therefore for every epoch perform the following weight update rule.
+  \begin{equation}
+    w \leftarrow w - \lambda \sum_{i=1}^n  \left(y_i  - g(X_i \cdot w)\right)X_i. \\ 
+  \end{equation}
+
+  It is important to note that this loss function although rooted in a probabilistic model, has some other quantitatively adventageous properties. For example, if square loss function were used, the $\Delta w$ term would be limited, the gradient would vanish as $w\cdot X_i$ approached large negative or positive values, which in some cases may not be adventageous. This avoids such vanishing gradient problems in a manner that again is rooted in the probabilistic model.
+  \end{menumerate}
+  \item \textbf{Daniel's Email Problem.} For this problem we will denote $X \subset \mathbb{R}^n$ as the manifold 
+  to which the feature vectors for all probable email scenarios are close. Let $x_t$ denote the component of some $x \in X$ such that $x_t$ describes
+  Daniel's time since midnight feature. 
+
+  From the problem it is observed that the restriction of $X$ to the dimension of $x_t$ is essentially dense in $S = [0, \epsilon_1) \sqcup (\epsilon_2, 24]$ for $x $ in the spam class. Clearly in the dimension of $x_t,$ this is not a linearly separable problem. One might consider a quadratic kernel allowing the classification of $S^C$ inside of the maximal boundary of $S$ with respect to the origin centered norm ordering of $\mathbb{R}, $ (take for example $(\epsilon_1, \epsilon_2)$). However a simpler solution arises by changing the feature itself.
+
+  Let $d: \mathbb{R} \times \mathbb{R} \to \mathbb{R}$ be the normal euclidean distance on $\mathbb{R}.$ Then defining the feature $x_t$
+  so that
+  \begin{equation}
+  	x_t = \min\{d(x,0), d(x,24)\}.
+  \end{equation}
+  This function then implies that the restriction of $X$ to the dimension of $x_t$ has a roughly contiguous interval of spam (positive) samples, ie. $[0, \max\{\epsilon_1, \epsilon_2\}.$ This interval is of course linearly separable with respect to $[0,24],$ and therefore we can use a Linear SVM.
+\end{menumerate}
+%%%%%%% Be sure to set the counter and use menumerate
+
+\end{document}
