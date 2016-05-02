@@ -14,6 +14,8 @@
 \usepackage{framed} 
 \usepackage{amsmath}
 \usepackage{titling}
+
+\usepackage{subcaption}
 \usepackage{fancyhdr}
 
 \pagestyle{fancy}
@@ -38,7 +40,7 @@
 %%%%%%%%%%%%%%%
 %% DOC INFO %%%
 %%%%%%%%%%%%%%%
-\newcommand{\bHWN}{4}
+\newcommand{\bHWN}{7}
 \newcommand{\bCLASS}{CS 189}
 
 \title{\bCLASS: Homework \bHWN}
@@ -59,120 +61,90 @@
 \thispagestyle{empty}
 
 \begin{menumerate}
-  \item \textbf{Ridge Regression}
+  \item \textbf{KMeans}
   \begin{menumerate}
-    \item Let $J(w, \alpha)$ be a loss function so that
-    \begin{equation}
-      J(w, \alpha) = (Xw + \alpha1 - y)^T(Xw + \alpha1 - y) + \lambda w^T w.     
-     \end{equation}
-     The maximizing $w, \alpha$ are derived as follows. The gradient with respect to $w$ is calculated; assuming that $J$ is convex in $w,$  this will give a maximum. A proof is given at the end ofthe assignment.
-     \begin{equation*}
-      \begin{aligned}
-        \nabla_w J &= \nabla_w (Xw + \alpha1 - y)^T(Xw + \alpha1 - y) + \nabla_w \lambda w^T w \\
-        &=  2 \lambda w  +2(\nabla_w (Xw + \alpha1 - y))^T(Xw + \alpha1 - y) \\
-        &= 2 \lambda w +2X^T(Xw + \alpha1 - y)
-      \end{aligned}    
-     \end{equation*}
-     Letting this quantity be $0$ by the convexity of $J$ we get
-     \begin{equation}
-        \begin{aligned}
-          0 &=2 \lambda w +2X^T(Xw + \alpha1 - y) \\
-          0 &= 2\lambda w + 2X^TXw + 2\alpha X^T 1 - 2X^Ty \\
-          0 &= ( \lambda I + X^TX)w + \alpha X^T 1 - X^T y \\
-          X^Ty - \alpha \bar x &= ( \lambda I + X^TX) \\
-          w &= ( \lambda I + X^TX)^{-1}  X^Ty
-        \end{aligned}
-     \end{equation}
-     \item See attached iPython notebook!
-  \end{menumerate}
+  \begin{figure}
+      \centering{
+      \includegraphics[height=0.3\textwidth]{class0.png}
+      \includegraphics[height=0.3\textwidth]{class1.png}
+      \includegraphics[height=0.3\textwidth]{class2.png}
+      \includegraphics[height=0.3\textwidth]{class3.png}
+      \includegraphics[height=0.3\textwidth]{class4.png}
+      \includegraphics[height=0.3\textwidth]{class5.png}
+      \includegraphics[height=0.3\textwidth]{class6.png}
+      \includegraphics[height=0.3\textwidth]{class7.png}
+      \includegraphics[height=0.3\textwidth]{class8.png}
+      \includegraphics[height=0.3\textwidth]{class9.png}
+        \caption{The mean centers of each class.}
+      }
 
-  \item \textbf{Logistic Regression}
-  \begin{menumerate}
-    \item  In this case
-    \begin{equation}
-      R(w) = 1.9883724141284103.
-     \end{equation} 
-     \item Nah
-     \item  $w(1) = array([-3. , 5.05089812, 0.68363271])$
-     \item $R(w(1)) = 0.066133848540594925$ 
-     \item Nah
-     \item $w(2) =  array([-4. , 9.10179623, 1.36726541])$ 
-     \item $R(w(2)) =  0.0015778803918752944$
+  \end{figure}
+    \item After running $K$-Means Figure 1 is a sample plot of each class. Furthermore running $K$-means with different initializations leads to different loss; the classes are distributed differently each time.
   \end{menumerate}
-  \item
-  \item \textbf{Revisiting Logistic Regression}
+  \item \textbf{Joke Recommender System}
   \begin{menumerate}
-  	\item Show the following theorem:
-  	\begin{theorem}
- 		If we define $g(z) = \frac{\tanh z + 1}{2}$ then
- 		\begin{equation}
- 			g(z) = \frac{e^z - e^{-z}}{2(e^z + e^{-z})} + \frac{1}{2}.
- 		\end{equation}
-  	\end{theorem} 	
- 		\begin{proof}
- 			Consider the following algebraic manipulation of $g(z)$ for any $z \in \mathbb{R}.$
- 			\begin{equation*}
- 				\begin{aligned}
- 					g(z) = \frac{\tanh z + 1}{2} &= \frac{(2s(2z) - 1) + 1}{2} \\
- 					&= \frac{2s(2z) - 1}{2} + \frac{1}{2}.
- 				\end{aligned}
- 			\end{equation*}
- 			Therefore we must only show that 
- 			\begin{equation}
- 				\frac{e^z -e^{-z}}{2(e^z+e^{-z})} = \frac{2\frac{1}{1+e^{-2z}}-1}{2}.
- 			\end{equation}
- 			Observe that since $e^z \neq 0$,
- 			\begin{equation*}
- 				\begin{aligned}
- 					\frac{2s(2z)-1}{2} &= \frac{1 - e^{-2z}}{2(1+e^{-2z})} \\
- 					&= \frac{e^z - e^{-z}}{2(e^z + e^{-z})}
- 				\end{aligned}
- 			\end{equation*}
- 			and so we know that, 
- 			 		\begin{equation}
- 			g(z) = \frac{e^z - e^{-z}}{2(e^z + e^{-z})} + \frac{1}{2}.
- 		\end{equation} 	
- 		\end{proof}
-	\item We calculate $g'(z)$ as follows,
-	\begin{equation*}
-		g'(z) = \frac{1}{2}\tanh' z = \frac{1}{2}\left(1 - \tanh^2 z\right)  
-	\end{equation*}
-	by the definition of $s'(z).$
-	\item Let $J(w) = \sum_{i=1}^n y_i \ln(g(X_i \cdot w)) + (1- y_i)\ln(1 - g(X_i \cdot w))$.  We derive the batch gradient descent learning rule as follows.
+  \item \emph{Warm Up.} We tried the average value reccomendation system with some success! We got around 37\% error as seen in the iPython notebook. 
+  \item \emph{$k$-NN.} We tried using $k$-NNS and below is a plot of the errors we received. $k$-NNs did best at $k=1000$. Awesome!
 
+  \begin{center}
+  \includegraphics[width=0.5\textwidth]{knn_improve.png}
+  \end{center}
+
+
+    \item \emph{Latent Factor Model.} We apply the latent factor model by setting all the values in the matrix to $0$ where there are $NaN$s. We then perform SVD yeilding
+  \begin{equation}
+    R = USV^T,\;\;\;u_i = U_i,\;\;\;v_j = (SV^T)^T_j 
+  \end{equation}
+  Then we let $R_{ij} = \langle u_i, v_j \rangle$. Below is a plot of how well the MSE of this approximation does 
+  with $S = diag(s_1, \dots, s_d, 0 \dots)$ as $d \to 100$.
+
+  \begin{center}
+  \includegraphics[width=0.5\textwidth]{training_svd.png}
+  \end{center}
+
+  Applying these approximations to the validation set we get the following graph indicating that $10$ latent dimensions optimizes
+  the proper embedding of the data.
+
+  \begin{center}
+  \includegraphics[width=0.5\textwidth]{index.png}
+  \end{center}
+
+  \item We will now attempt to do $L_1$ regularized gradient descent on the Frobenius MSE. Notice that $L(u_i, v_j)$ is symmetric
+  in its calculation of the gradient so we skip the second derivations. First we calculate the gradient with respect to a single $u_i$.
   \begin{equation*}
     \begin{aligned}
-      \nabla J(w) &= \sum_{i=1}^n y_i \nabla \ln(g(X_i \cdot w)) + \nabla (1 - y_i) \ln (1 - g(X_i \cdot w)) \\
-      &=   \sum_{i=1}^n \frac{y_i}{g(X_i \cdot w)} \nabla g(X_i \cdot w) - \frac{1-y_i}{1 - g(X_i \cdot w)} \nabla g(X_i \cdot w) \\
-      &= \sum_{i=1}^n \frac{y_i}{g(X_i \cdot w)} g(X_i \cdot w)(1- g(X_i \cdot w))\nabla X_i \cdot w - \\& \;\;\;\;\;\;\;\;\;\;\;\;\;\frac{1-y_i}{1 - g(X_i \cdot w)} g(X_i \cdot w) (1 - g(X_i \cdot w))\nabla X_i \cdot w \\
-      &= \sum_{i=1}^n  \left(\frac{y_i}{g(X_i \cdot w)} - \frac{1-y_i}{1 - g(X_i \cdot w)}\right) g(X_i \cdot w) (1 - g(X_i \cdot w))\nabla X_i \cdot w \\
-      &=  \sum_{i=1}^n  \left(\frac{y_i}{g(X_i \cdot w)} - \frac{1-y_i}{1 - g(X_i \cdot w)}\right) g(X_i \cdot w) (1 - g(X_i \cdot w))X_i \\
-      &= \sum_{i=1}^n  \left(\frac{y_i(1 - g(X_i \cdot w))  - (1-y_i)g(X_i \cdot w)}{g(X_i \cdot w)(1 - g(X_i \cdot w))} \right) g(X_i \cdot w) (1 - g(X_i \cdot w))X_i \\
-      &= \sum_{i=1}^n  \left(y_i(1 - g(X_i \cdot w))  - (1-y_i)g(X_i \cdot w)\right)X_i \\
-      &= \sum_{i=1}^n  \left(y_i - y_ig(X_i \cdot w)  - g(X_i \cdot w) + y_ig(X_i \cdot w)\right)X_i \\
-      &= \sum_{i=1}^n  \left(y_i  - g(X_i \cdot w)\right)X_i \\
-    \end{aligned}
+        \frac{\partial L}{\partial u_i} &= \frac{\partial}{\partial u_i} \sum_{(k,l) \in S} (v^T_lu_k - R_{kl})^2 + \frac{\partial}{\partial u_i} \lambda \sum_{k=1}^d u_k^Tu_l \\
+         &= \frac{\partial}{\partial u_i} \sum_{k \in S_1} \sum_{l \in S_2} (v^T_lu_k - R_{kl})^2 + 2 \lambda u_i  \\
+         &= \frac{\partial}{\partial u_i} \sum_{l \in S_2} (v^T_lu_i - R_{il})^2 + 2 \lambda u_i  \\
+         &= 2 \sum_{l \in S_2} (v_l^Tu_i - R_{il})v_l + 2 \lambda u_i  \\
+     \end{aligned} 
   \end{equation*}
-
-  Therefore for every epoch perform the following weight update rule.
+  Using the aforementioned symmetry we get
   \begin{equation}
-    w \leftarrow w - \lambda \sum_{i=1}^n  \left(y_i  - g(X_i \cdot w)\right)X_i. \\ 
+    \begin{aligned}
+        \frac{\partial L}{\partial u_i} &= \sum_{l \in S_2} (v_l^Tu_i - R_{il})v_l + \lambda u_i \\
+        \frac{\partial L}{\partial v_j} &= \sum_{k \in S_1} (v_j^Tu_k - R_{kj})u_k + \lambda v_j 
+    \end{aligned}
   \end{equation}
 
-  It is important to note that this loss function although rooted in a probabilistic model, has some other quantitatively adventageous properties. For example, if square loss function were used, the $\Delta w$ term would be limited, the gradient would vanish as $w\cdot X_i$ approached large negative or positive values, which in some cases may not be adventageous. This avoids such vanishing gradient problems in a manner that again is rooted in the probabilistic model.
+  Now we calculate the minimizers
+  \begin{equation*}
+  \begin{aligned}
+   \frac{\partial L}{\partial u_i} = 0 &= \sum_{l \in S_2} (v_l^Tu_i - R_{il})v_l + \lambda u_i \\
+   0 &= \lambda I u_i + \sum_{l \in S_2} (v_lv_l^Tu_i -  \sum_{l \in S_2}  v_lR_{il}  \\
+   \sum_{l \in S_2}  v_lR_{il} &= \left(\lambda I + \sum_{l \in S_2} v_l\ocross v_l\right) u_i \\
+   u_i &= \left(\lambda I + \sum_{l \in S_2} v_l\otimes v_l\right)^{-1} \sum_{l \in S_2}  v_lR_{il}
+  \end{aligned}
+  \end{equation*}
+  This gives the following alternating minimizer method for every $i,j$ alternate the following.
+  \begin{equation}
+  \begin{aligned}
+       u_i &= \left(\lambda I + \sum_{l \in S_2} v_l\otimes v_l\right)^{-1} \sum_{l \in S_2}  v_lR_{il} \\
+       v_j &= \left(\lambda I + \sum_{k \in S_1} u_k\otimes u_k\right)^{-1} \sum_{l \in S_1}  u_kR_{kj}
+    \end{aligned}  
+  \end{equation}
+  We implemented this in iPython and got the following results.
   \end{menumerate}
-  \item \textbf{Daniel's Email Problem.} For this problem we will denote $X \subset \mathbb{R}^n$ as the manifold 
-  to which the feature vectors for all probable email scenarios are close. Let $x_t$ denote the component of some $x \in X$ such that $x_t$ describes
-  Daniel's time since midnight feature. 
-
-  From the problem it is observed that the restriction of $X$ to the dimension of $x_t$ is essentially dense in $S = [0, \epsilon_1) \sqcup (\epsilon_2, 24]$ for $x $ in the spam class. Clearly in the dimension of $x_t,$ this is not a linearly separable problem. One might consider a quadratic kernel allowing the classification of $S^C$ inside of the maximal boundary of $S$ with respect to the origin centered norm ordering of $\mathbb{R}, $ (take for example $(\epsilon_1, \epsilon_2)$). However a simpler solution arises by changing the feature itself.
-
-  Let $d: \mathbb{R} \times \mathbb{R} \to \mathbb{R}$ be the normal euclidean distance on $\mathbb{R}.$ Then defining the feature $x_t$
-  so that
-  \begin{equation}
-  	x_t = \min\{d(x,0), d(x,24)\}.
-  \end{equation}
-  This function then implies that the restriction of $X$ to the dimension of $x_t$ has a roughly contiguous interval of spam (positive) samples, ie. $[0, \max\{\epsilon_1, \epsilon_2\}.$ This interval is of course linearly separable with respect to $[0,24],$ and therefore we can use a Linear SVM.
 \end{menumerate}
 %%%%%%% Be sure to set the counter and use menumerate
 
