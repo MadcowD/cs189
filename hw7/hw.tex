@@ -131,7 +131,7 @@
   \begin{equation*}
   \begin{aligned}
    \frac{\partial L}{\partial u_i} = 0 &= \sum_{l \in S_2} (v_l^Tu_i - R_{il})v_l + \lambda u_i \\
-   0 &= \lambda I u_i + \sum_{l \in S_2} (v_lv_l^Tu_i -  \sum_{l \in S_2}  v_lR_{il}  \\
+   0 &= \lambda I u_i + \sum_{l \in S_2} v_lv_l^Tu_i -  \sum_{l \in S_2}  v_lR_{il}  \\
    \sum_{l \in S_2}  v_lR_{il} &= \left(\lambda I + \sum_{l \in S_2} v_l\ocross v_l\right) u_i \\
    u_i &= \left(\lambda I + \sum_{l \in S_2} v_l\otimes v_l\right)^{-1} \sum_{l \in S_2}  v_lR_{il}
   \end{aligned}
@@ -143,7 +143,10 @@
        v_j &= \left(\lambda I + \sum_{k \in S_1} u_k\otimes u_k\right)^{-1} \sum_{l \in S_1}  u_kR_{kj}
     \end{aligned}  
   \end{equation}
-  We implemented this in iPython and got the following results.
+  We implemented this in iPython and got the following descent for $\lambda = 10$.
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{alternatingdescent.png}
+  \end{center}
   \end{menumerate}
 \end{menumerate}
 %%%%%%% Be sure to set the counter and use menumerate
